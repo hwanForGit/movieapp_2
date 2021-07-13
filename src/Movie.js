@@ -7,17 +7,26 @@ Movie.propTypes = {
   year: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
+  // array propTypes
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-function Movie({ year, title, summary, poster }) {
+function Movie({ year, title, summary, poster, genres }) {
   return (
-    <div class='movies__movie'>
-      <img src={poster} alt='poster' title={title} />
-      <div class='movie__data'>
-        <h3 class='movie__title'>{title}</h3>
-        <h5 class='movie__year'>{year}</h5>
-        <p class='movie__summary'>{summary}</p>
+    <div className='movie'>
+      <img src={poster} alt={title} title={title} />
+      <div className='movie__data'>
+        <h3 className='movie__title'>{title}</h3>
+        <h5 className='movie__year'>{year}</h5>
+        <p className='movie__summary'>{summary.slice(0, 140)}...</p>
+        <ul className='generes'>
+          {genres.map((genre, index) => (
+            <li key={index} className='genres__genre'>
+              {genre}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
