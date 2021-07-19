@@ -4,6 +4,7 @@ class Detail extends React.Component {
   componentDidMount() {
     const { location, history } = this.props;
     console.log(location.state);
+    console.log(history);
     if (location.state === undefined) {
       history.push('/');
     }
@@ -13,7 +14,11 @@ class Detail extends React.Component {
 
   render() {
     const { location } = this.props;
-    return <section>{location.state.title}</section>;
+    if (location.state) {
+      return <span>{location.state.title}</span>;
+    } else {
+      return null;
+    }
   }
 }
 

@@ -13,10 +13,10 @@ Movie.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
-function Movie({ year, title, summary, poster, genres }) {
+function Movie({ id, year, title, summary, poster, genres }) {
   return (
-    <Link to={{ pathname: '/movie-detail', state: { year, title, summary, poster, genres } }}>
-      <div className='movie'>
+    <div className='movie'>
+      <Link to={{ pathname: `/movie/${id}`, state: { id, year, title, summary, poster, genres } }}>
         <img src={poster} alt={title} title={title} />
         <div className='movie__data'>
           <h3 className='movie__title'>{title}</h3>
@@ -30,8 +30,8 @@ function Movie({ year, title, summary, poster, genres }) {
             ))}
           </ul>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
